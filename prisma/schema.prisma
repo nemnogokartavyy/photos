@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int          @id @default(autoincrement())
+  name            String
+  username        String       @unique
+  password        String
+  createdAt       DateTime     @default(now())
+  photos          Photo[]
+  comments        Comment[]
+  sentFriends     Friendship[] @relation("SentFriendships")
+  receivedFriends Friendship[] @relation("ReceivedFriendships")
+  likes           Like[]
+}
+
+model Friendship {
+  id          Int      @id @default(autoincrement())
+  requester   User     @relation("SentFriendships", fields: [requesterId], references: [id])
+  requesterId Int
+  addressee   User     @relation("ReceivedFriendships", fields: [addresseeId], references: [id])
+  addresseeId Int
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+}
+
+model Photo {
+  id        Int       @id @default(autoincrement())
+  url       String
+  owner     User      @relation(fields: [ownerId], references: [id])
+  ownerId   Int
+  createdAt DateTime  @default(now())
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  photoId   Int
+  parentId  Int?
+  createdAt DateTime @default(now())
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  photoId   Int
+  createdAt DateTime @default(now())
+
+  @@unique([userId, photoId])
+}

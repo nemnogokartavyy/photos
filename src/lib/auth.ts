@@ -1,15 +1,25 @@
 import jwt from "jsonwebtoken";
+import { DecodedToken } from "@/types/decodedtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET;
-if (!JWT_SECRET) throw new Error("JWT_SECRET must be defined");
-
-export function signToken(payload: object) {
-  return jwt.sign(payload, JWT_SECRET as string, { expiresIn: "7d" });
+function getSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error("JWT_SECRET must be defined");
+  return secret;
 }
 
-export function verifyToken(token: string) {
+export function signToken(payload: object) {
+  return jwt.sign(payload, getSecret(), { expiresIn: "7d" });
+}
+
+export function verifyToken(token: string): DecodedToken | null {
   try {
-    return jwt.verify(token, JWT_SECRET as string);
+    const decoded = jwt.verify(token, getSecret()) as DecodedToken;
+
+    if (decoded && decoded.id && decoded.username) {
+      return decoded;
+    }
+
+    return null;
   } catch {
     return null;
   }

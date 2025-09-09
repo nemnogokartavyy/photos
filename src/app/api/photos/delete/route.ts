@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { DecodedToken } from "@/types/decodedtoken";
+import fs from "fs";
+import path from "path";
 
 export async function DELETE(req: NextRequest) {
   try {
@@ -43,8 +45,6 @@ export async function DELETE(req: NextRequest) {
     await prisma.comment.deleteMany({ where: { photoId } });
     await prisma.like.deleteMany({ where: { photoId } });
 
-    const fs = require("fs");
-    const path = require("path");
     const filePath = path.join(process.cwd(), "public", photo.url);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);

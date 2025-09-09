@@ -8,8 +8,12 @@ import { AcceptFriendRequestBody } from "@/types/acceptfriendrequestbody";
 export async function POST(req: NextRequest) {
   try {
     const body: AcceptFriendRequestBody = await req.json();
+    const { friendshipId } = body;
 
-    const { friendshipId, token } = body;
+    const token = req.cookies.get("token")?.value;
+    if (!token) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
 
     const decoded: DecodedToken | null = verifyToken(token);
     if (!decoded) {

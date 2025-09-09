@@ -35,6 +35,10 @@ export async function GET(req: NextRequest) {
       f.requesterId === decoded.id ? f.addresseeId : f.requesterId
     );
 
+    if (friendIds.length === 0) {
+      return NextResponse.json([]);
+    }
+
     const photos = await prisma.photo.findMany({
       where: { ownerId: { in: friendIds } },
       include: {

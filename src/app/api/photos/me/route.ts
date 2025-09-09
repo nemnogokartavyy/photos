@@ -3,11 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { DecodedToken } from "@/types/decodedtoken";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { page = 1, limit = 5 } = body;
-
     const token = req.cookies.get("token")?.value;
     if (!token) {
       return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
@@ -17,6 +14,10 @@ export async function POST(req: NextRequest) {
     if (!decoded) {
       return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
     }
+
+    const { searchParams } = new URL(req.url);
+    const page = Math.max(Number(searchParams.get("page") || 1), 1);
+    const limit = Math.max(Number(searchParams.get("limit") || 5), 1);
 
     const photos = await prisma.photo.findMany({
       where: { ownerId: decoded.id },

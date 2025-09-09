@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { DecodedToken } from "@/types/decodedtoken";
-import { GetFriendsBody } from "@/types/getfriendsbody";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const body: GetFriendsBody = await req.json();
-    const { token } = body;
+    const token = req.cookies.get("token")?.value;
+    if (!token) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
 
     const decoded: DecodedToken | null = verifyToken(token);
     if (!decoded) {

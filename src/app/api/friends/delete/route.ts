@@ -7,7 +7,12 @@ import { DeleteFriendRequestBody } from "@/types/deletefriendrequestbody";
 export async function DELETE(req: NextRequest) {
   try {
     const body: DeleteFriendRequestBody = await req.json();
-    const { friendshipId, token } = body;
+    const { friendshipId } = body;
+
+    const token = req.cookies.get("token")?.value;
+    if (!token) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
 
     const decoded: DecodedToken | null = verifyToken(token);
     if (!decoded) {

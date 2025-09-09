@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
     const parsed = loginSchema.safeParse(body);
 
     if (!parsed.success) {
-      const errors = parsed.error.flatten().fieldErrors;
-      return NextResponse.json({ error: errors }, { status: 400 });
+      const firstError = parsed.error.issues[0]?.message || "Неверный ввод";
+      return NextResponse.json({ error: firstError }, { status: 400 });
     }
 
     const { username, password } = parsed.data;
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const user = await prisma.user.findUnique({ where: { username } });
     if (!user) {
       return NextResponse.json(
-        { error: "Недействительные учетные данные - логин" },
+        { error: "Неверные учетные данные" },
         { status: 401 }
       );
     }
@@ -28,12 +28,13 @@ export async function POST(req: NextRequest) {
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
       return NextResponse.json(
-        { error: "Недействительные учетные данные - пароль" },
+        { error: "Неверные учетные данные" },
         { status: 401 }
       );
     }
 
     const publicUser: User = { id: user.id, username: user.username };
+
     return sendTokenResponse(publicUser);
   } catch (err) {
     console.error("Ошибка входа:", err);

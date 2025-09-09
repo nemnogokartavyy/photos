@@ -25,8 +25,8 @@ export async function POST(req: NextRequest) {
     const parsed = registerSchema.safeParse(body);
 
     if (!parsed.success) {
-      const errors = parsed.error.flatten().fieldErrors;
-      return NextResponse.json({ error: errors }, { status: 400 });
+      const firstError = parsed.error.issues[0]?.message || "Неверный ввод";
+      return NextResponse.json({ error: firstError }, { status: 400 });
     }
 
     const { name, username, password } = parsed.data;
@@ -45,7 +45,9 @@ export async function POST(req: NextRequest) {
       data: { name, username, password: hashedPassword },
     });
 
-    return sendTokenResponse({ id: user.id, username: user.username });
+    const publicUser: User = { id: user.id, username: user.username };
+
+    return sendTokenResponse(publicUser);
   } catch (err) {
     if (err instanceof PrismaClientKnownRequestError && err.code === "P2002") {
       return NextResponse.json(

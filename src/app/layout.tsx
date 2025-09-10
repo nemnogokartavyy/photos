@@ -1,15 +1,8 @@
-// import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { createMetadata } from "@/lib/metadata";
-
-export const metadata = createMetadata(
-  "ФотоСеть - делись моментами",
-  "ФотоСеть - социальное приложение для обмена фотографиями.",
-  "/favicon.ico"
-);
+import AuthContent from "@/components/AuthContent";
 
 export default function RootLayout({
   children,
@@ -20,9 +13,11 @@ export default function RootLayout({
     <html lang="ru">
       <body>
         <AuthProvider>
-          <Header />
-          <main className="content container">{children}</main>
-          <Footer />
+          <AuthContent>
+            <Header />
+            <main className="content container">{children}</main>
+            <Footer />
+          </AuthContent>
         </AuthProvider>
       </body>
     </html>

@@ -1,0 +1,113 @@
+.login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 25px;
+    background-color: #fff;
+    border-radius: 25px;
+}
+
+.login__title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login__label {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.login__input {
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 2.5px solid #b0b0b0;
+    font-weight: bold;
+    width: 100%;
+}
+
+.login__button {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+.feed__error {
+    color: rgb(255, 74, 74);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.feed__success {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.login__register-text {
+    font-weight: bold;
+    text-align: center;
+}
+
+.login__register-link {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.login__register-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+}
+
+@media (max-width:850px) {
+
+    .login__form {
+        padding: 20px 10px;
+        border-radius: 10px;
+    }
+
+    .login__title {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .login__label {
+        margin-bottom: 10px;
+    }
+
+    .login__button {
+        margin-bottom: 10px;
+    }
+
+    .feed__error {
+        margin-bottom: 10px;
+    }
+
+    .feed__success {
+        margin-bottom: 10px;
+    }
+
+}

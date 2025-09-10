@@ -45,7 +45,7 @@
     margin-bottom: 25px;
 }
 
-.feed__error {
+.login__error {
     color: rgb(255, 74, 74);
     text-align: center;
     font-weight: bold;
@@ -53,11 +53,18 @@
     text-align: center;
 }
 
-.feed__success {
+.login__success {
     color: green;
     text-align: center;
     font-weight: bold;
     margin-bottom: 25px;
+}
+
+.login__register-text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login__register-text {
@@ -70,6 +77,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
+    font-weight: bold;
+    text-align: center;
 }
 
 .login__register-link::after {

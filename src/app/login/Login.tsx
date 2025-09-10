@@ -66,8 +66,8 @@ export default function Login() {
           <p
             className={
               feedback.type === "error"
-                ? styles.feed__error
-                : styles.feed__success
+                ? styles.login__error
+                : styles.login__success
             }
           >
             {feedback.text}
@@ -103,13 +103,12 @@ export default function Login() {
         >
           {loading ? "Загрузка..." : "Войти"}
         </button>
-
-        <p className={styles["login__register-text"]}>
-          Нет аккаунта?{" "}
+        <div className={styles["login__register-text-block"]}>
+          <p className={styles["login__register-text"]}>Нет аккаунта? </p>
           <Link className={styles["login__register-link"]} href="/register">
             Зарегистрироваться
           </Link>
-        </p>
+        </div>
       </form>
     </div>
   );

@@ -3,6 +3,13 @@ import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AuthContent from "@/components/AuthContent";
+import { createMetadata } from "@/lib/metadata";
+
+export const metadata = createMetadata(
+  "ФотоСеть - делись моментами",
+  "ФотоСеть - социальное приложение для обмена фотографиями.",
+  "/favicon.ico"
+);
 
 export default function RootLayout({
   children,

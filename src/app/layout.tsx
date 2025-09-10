@@ -1,8 +1,8 @@
 // import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
-// import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata(
@@ -20,9 +20,9 @@ export default function RootLayout({
     <html lang="ru">
       <body>
         <AuthProvider>
-          {/* <Header /> */}
+          <Header />
           <main className="content container">{children}</main>
-          {/* <Footer /> */}
+          <Footer />
         </AuthProvider>
       </body>
     </html>

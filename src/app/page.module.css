@@ -1,0 +1,122 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0 25px 0;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.hero__title {
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+    letter-spacing: -2.5px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+
+.hero__subtitle {
+    text-align: center;
+    font-size: 24px;
+}
+
+.hero__image {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero__img {
+    width: 75%;
+    border-radius: 25px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    padding: 25px 0 25px 0;
+}
+
+.features__title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.features__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features__item {
+    font-size: 24px;
+    padding: 25px 50px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    width: 75%;
+    text-align: center;
+}
+
+.features__item:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.features__item-title {
+    color: #ff7e5f;
+}
+
+@media (max-width: 850px) {
+
+    .hero {
+        padding: 10px 0 10px 0;
+    }
+
+    .hero__content {
+        margin-bottom: 20px;
+    }
+
+    .hero__title {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .hero__img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .features {
+        border-radius: 10px;
+        padding: 10px 0 10px 0;
+    }
+
+    .features__title {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .features__item {
+        font-size: 20px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .features__item:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+}

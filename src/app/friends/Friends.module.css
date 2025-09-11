@@ -1,0 +1,203 @@
+    .friends {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px 0 25px 0;
+    }
+
+    .friends__title {
+        text-align: center;
+        font-size: 72px;
+        font-weight: bold;
+        letter-spacing: -2.5px;
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 50px;
+    }
+
+    .feed__error {
+        color: rgb(255, 74, 74);
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .feed__success {
+        color: green;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .friends__form {
+        background-color: white;
+        padding: 25px 50px;
+        border-radius: 25px;
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .friends__label {
+        display: none;
+    }
+
+    .friends__input {
+        padding: 10px 10px;
+        border-radius: 10px;
+        border: 2.5px solid #b0b0b0;
+        font-weight: bold;
+    }
+
+    .friends__button {
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .friends__button:disabled {
+        background: linear-gradient(90deg, #c0c0c0, #5a5a5a);
+    }
+
+    .register__error {
+        color: rgb(255, 74, 74);
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+        /* width: 80%; */
+        text-align: center;
+    }
+
+    .friends__section {
+        padding: 25px 50px;
+        background-color: #fff;
+        border-radius: 25px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 700px;
+    }
+
+    .friends__section:not(:last-child) {
+        margin-bottom: 25px;
+    }
+
+    .friends__subtitle {
+        font-size: 36px;
+        margin-bottom: 25px;
+    }
+
+    .friends__list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 25px;
+    }
+
+    .friends__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(240, 240, 240);
+    }
+
+    .friends__username {
+        font-size: 24px;
+        margin-right: 25px;
+        font-weight: bold;
+    }
+
+    .friends__actions {
+        display: flex;
+        gap: 25px;
+    }
+
+    .friends__empty {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    @media (max-width: 850px) {
+
+        .friends {
+            padding: 10px 0 10px 0;
+        }
+
+        .friends__title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .friends__form {
+            padding: 10px 20px;
+            border-radius: 10px;
+            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .friends__input {
+            width: 100%;
+        }
+
+        .register__error {
+            margin-bottom: 10px;
+        }
+
+        .friends__section {
+            padding: 10px 20px;
+            border-radius: 10px;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .friends__section:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .friends__subtitle {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .friends__list {
+            gap: 10px;
+        }
+
+        .friends__item {
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .friends__username {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .friends__actions {
+            flex-direction: column;
+        }
+
+        .friends__actions {
+            gap: 10px;
+        }
+
+        .friends__empty {
+            font-size: 20px;
+        }
+
+    }

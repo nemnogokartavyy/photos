@@ -69,7 +69,7 @@ export function usePhotoActions({
       });
       const resData = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(resData?.error || "Ошибка изменения лайка");
-      // mutate(undefined, true);
+      mutate(undefined, true);
     } catch (err: any) {
       mutate(previousData, false);
       setFeedback({ type: "error", text: err.message || "Сетевая ошибка" });
@@ -122,7 +122,7 @@ export function usePhotoActions({
       const resData = await res.json().catch(() => ({}));
       if (!res.ok)
         throw new Error(resData.error || "Ошибка добавления комментария");
-      // mutate(undefined, true);
+      mutate(undefined, true);
       setCommentTextMap((prev) => ({ ...prev, [photoId]: "" }));
       setReplyText("");
       setReplyTo(null);
@@ -162,7 +162,7 @@ export function usePhotoActions({
       setFeedback({ type: "success", text: "Фото успешно загружено!" });
       setFile(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
-      // mutate(undefined, true);
+      mutate(undefined, true);
     } catch (err: any) {
       setFeedback({ type: "error", text: err.message || "Сеть недоступна" });
     }

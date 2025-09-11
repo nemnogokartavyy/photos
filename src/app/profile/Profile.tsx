@@ -5,12 +5,11 @@ import useSWRInfinite from "swr/infinite";
 import { useAuth } from "@/context/AuthContext";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import styles from "./Profile.module.css";
-import { COMMENT_BG_COLORS } from "@/constants/commentColors";
-import { Comment } from "@/types/comment";
 import { Photo } from "@/types/photo";
 import { LIMIT } from "@/constants/limitPages";
 import { fetcher } from "@/lib/fetcher";
 import { usePhotoActions } from "@/hooks/usePhotoActions";
+import { renderComments } from "@/hooks/renderComments";
 
 export default function Profile() {
   useProtectedRoute();
@@ -64,75 +63,6 @@ export default function Profile() {
     setReplyTo,
     setSelectedPhoto,
   });
-
-  function renderComments(
-    comments: Comment[],
-    photoId: number,
-    parentId: number | null = null,
-    level: number = 0
-  ): React.ReactNode[] {
-    return comments
-      .filter((c) => c.parentId === parentId)
-      .map((c) => {
-        const bgColor = COMMENT_BG_COLORS[level % COMMENT_BG_COLORS.length];
-        return (
-          <li
-            key={c.id}
-            style={{ paddingLeft: `${level * 20}px` }}
-            className={styles["comment-list__item"]}
-          >
-            <article
-              style={{ backgroundColor: bgColor }}
-              className={styles["comment-list__comment"]}
-            >
-              <header className={styles["comment-list__header"]}>
-                <strong className={styles["comment-list__author"]}>
-                  {c.author.username}
-                </strong>
-              </header>
-              <p className={styles["comment-list__text"]}>{c.text}</p>
-              <footer className={styles["comment-list__actions"]}>
-                <button
-                  className={styles["comment-list__reply-button"]}
-                  onClick={() => {
-                    setReplyTo(c.id);
-                    setSelectedPhoto(photoId);
-                  }}
-                >
-                  Ответить
-                </button>
-              </footer>
-              {replyTo === c.id && selectedPhoto === photoId && (
-                <form
-                  className={styles["comment-list__reply-form"]}
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    addComment(photoId, replyText, c.id);
-                  }}
-                >
-                  <input
-                    ref={replyInputRef}
-                    className={styles["comment-list__reply-input"]}
-                    value={replyText}
-                    onChange={(e) => setReplyText(e.target.value)}
-                    placeholder="Напишите ответ..."
-                  />
-                  <button
-                    type="submit"
-                    className={styles["comment-list__reply-submit"]}
-                  >
-                    ➤
-                  </button>
-                </form>
-              )}
-              <ul className={styles["comment-list__children"]}>
-                {renderComments(comments, photoId, c.id, level + 1)}
-              </ul>
-            </article>
-          </li>
-        );
-      });
-  }
 
   if (!user) return null;
 
@@ -203,7 +133,19 @@ export default function Profile() {
                 </figure>
                 <section className={styles["photo-card__comments"]}>
                   <ul className={styles["photo-card__comments-list"]}>
-                    {renderComments(photo.comments, photo.id)}
+                    {renderComments({
+                      comments: photo.comments,
+                      photoId: photo.id,
+                      replyTo,
+                      selectedPhoto,
+                      replyText,
+                      setReplyTo,
+                      setSelectedPhoto,
+                      setReplyText,
+                      addComment,
+                      replyInputRef,
+                      styles,
+                    })}
                   </ul>
                   <footer className={styles["photo-card__comment-form"]}>
                     <input

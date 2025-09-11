@@ -1,0 +1,256 @@
+.feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0 25px 0;
+}
+
+.feed__title {
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+    letter-spacing: -2.5px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+
+.feed__error {
+    color: rgb(255, 74, 74);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.feed__success {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.feed__empty {
+    font-size: 24px;
+    text-align: center;
+}
+
+.feed__photos {
+    width: 50%;
+    min-width: 500px;
+}
+
+.feed__load-more {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.photo-card {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+.photo-card__header {
+    margin-bottom: 25px;
+}
+
+.photo-card__owner {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.photo-card__figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 25px;
+}
+
+.photo-card__image {
+    margin-bottom: 10px;
+}
+
+.photo-card__actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.photo-card__like-button {
+    font-size: 16px;
+    font-weight: bold;
+    color: #feb47b;
+}
+
+.photo-card__comments {
+    background-color: #ffe6d3;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.comment-list__comment {
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-list__header {
+    margin-bottom: 5px;
+}
+
+.comment-list__text {
+    margin-bottom: 5px;
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-radius: 5px;
+    word-wrap: break-word
+}
+
+.comment-list__actions {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 5px;
+}
+
+.comment-list__reply-button {
+    padding: 5px 10px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.comment-list__reply-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-list__reply-input {
+    padding: 5px 5px;
+    border-radius: 5px;
+    border: 2.5px solid #b0b0b0;
+    width: 100%;
+}
+
+.comment-list__reply-submit {
+    padding: 5px 10px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.comment-list__login-notice {
+    background: linear-gradient(90deg, #ff7e5f, rgb(250, 200, 150));
+    color: rgb(255, 240, 240);
+    color: rgb(255, 240, 220);
+    color: rgb(255, 220, 200);
+    color: rgb(255, 200, 180);
+}
+
+.photo-card__comment-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 5px;
+}
+
+.photo-card__comment-input {
+    padding: 5px 5px;
+    border-radius: 5px;
+    border: 2.5px solid #b0b0b0;
+    width: 100%;
+}
+
+.photo-card__comment-button {
+    padding: 5px 10px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+@media (max-width: 850px) {
+
+    .feed {
+        padding: 10px 0 10px 0;
+    }
+
+    .feed__title {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .feed__error {
+        margin-bottom: 10px;
+    }
+
+    .feed__success {
+        margin-bottom: 10px;
+    }
+
+    .photo-upload {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .photo-upload__label {
+        font-size: 16px;
+    }
+
+    .photo-upload__button {
+        font-size: 16px;
+    }
+
+    .feed__empty {
+        font-size: 20px;
+    }
+
+    .feed__photos {
+        max-width: 90%;
+        min-width: 0;
+    }
+
+    .feed__load-more {
+        font-size: 16px;
+    }
+
+    .photo-card {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    .photo-card__header {
+        margin-bottom: 10px;
+    }
+
+    .photo-card__figure {
+        margin-bottom: 10px;
+    }
+
+    .photo-card__comment-form {
+        align-items: flex-end;
+        flex-direction: column;
+        padding: 0px;
+        gap: 5px;
+    }
+
+}

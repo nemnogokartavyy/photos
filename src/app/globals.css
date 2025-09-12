@@ -175,7 +175,10 @@ body {
     animation: pulseLink 1.5s infinite;
 }
 
-.auth-block {}
+.auth-block {
+    display: flex;
+    gap: 20px;
+}
 
 .auth-text {
     margin-right: 20px;
@@ -238,7 +241,6 @@ body {
         flex-direction: column;
         gap: 15px;
         align-items: center;
-
     }
 
     .auth-text {
@@ -248,7 +250,6 @@ body {
 
     .auth-btn {
         font-size: 16px;
-
     }
 
 }

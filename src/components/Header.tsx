@@ -55,12 +55,10 @@ export default function Header() {
             </>
           ) : (
             <>
-              <li className="nav-item">
+              <li className="auth-block">
                 <Link className="nav-link, btn-style" href="/login">
                   Войти
                 </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link, btn-style" href="/register">
                   Регистрация
                 </Link>

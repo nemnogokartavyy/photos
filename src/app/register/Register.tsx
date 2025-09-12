@@ -62,11 +62,14 @@ export default function Register() {
 
         {feedback && (
           <p
-            className={
-              feedback.type === "error"
-                ? styles.register__error
-                : styles.register__success
-            }
+            className={`
+              ${styles.register__message}
+              ${
+                feedback.type === "error"
+                  ? styles.register__error
+                  : styles.register__success
+              }
+              `}
           >
             {feedback.text}
           </p>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Comment } from "@/types/comment";
 import { COMMENT_BG_COLORS } from "@/constants/commentColors";
+import cn from "classnames";
 
 interface RenderCommentsProps {
   comments: Comment[];
@@ -55,7 +56,10 @@ export function renderComments({
             <p className={styles["comment-list__text"]}>{c.text}</p>
             <footer className={styles["comment-list__actions"]}>
               <button
-                className={styles["comment-list__reply-button"]}
+                className={cn(
+                  styles["comment-list__reply-button"],
+                  "btn-style"
+                )}
                 onClick={() => {
                   setReplyTo(c.id);
                   setSelectedPhoto(photoId);
@@ -74,14 +78,20 @@ export function renderComments({
               >
                 <input
                   ref={replyInputRef}
-                  className={styles["comment-list__reply-input"]}
+                  className={cn(
+                    styles["comment-list__reply-input"],
+                    "input-style"
+                  )}
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder="Напишите ответ..."
                 />
                 <button
                   type="submit"
-                  className={styles["comment-list__reply-submit"]}
+                  className={cn(
+                    styles["comment-list__reply-submit"],
+                    "btn-style"
+                  )}
                 >
                   ➤
                 </button>

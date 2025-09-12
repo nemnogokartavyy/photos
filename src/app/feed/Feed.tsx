@@ -4,12 +4,14 @@ import { useState, useRef, useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
 import { useAuth } from "@/context/AuthContext";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
+import "@/app/style.css";
 import styles from "./Feed.module.css";
 import { Photo as BasePhoto } from "@/types/photo";
 import { LIMIT } from "@/constants/limitPages";
 import { fetcher } from "@/lib/fetcher";
 import { renderComments } from "@/hooks/renderComments";
 import { usePhotoActions } from "@/hooks/usePhotoActions";
+import cn from "classnames";
 
 export interface Photo extends BasePhoto {
   owner: { username: string };
@@ -72,11 +74,11 @@ export default function Feed() {
       <h1 className={styles.feed__title}>Лента фото</h1>
       {feedback && (
         <p
-          className={
+          className={cn(
             feedback.type === "error"
               ? styles.feed__error
               : styles.feed__success
-          }
+          )}
         >
           {feedback.text}
         </p>
@@ -104,7 +106,10 @@ export default function Feed() {
                   />
                   <figcaption className={styles["photo-card__actions"]}>
                     <button
-                      className={styles["photo-card__like-button"]}
+                      className={cn(
+                        styles["photo-card__like-button"],
+                        "link-style"
+                      )}
                       onClick={() => toggleLike(photo.id)}
                       disabled={loading}
                     >
@@ -132,7 +137,10 @@ export default function Feed() {
                   </ul>
                   <footer className={styles["photo-card__comment-form"]}>
                     <input
-                      className={styles["photo-card__comment-input"]}
+                      className={cn(
+                        styles["photo-card__comment-input"],
+                        "input-style"
+                      )}
                       value={
                         selectedPhoto === photo.id && replyTo === null
                           ? commentTextMap[photo.id] || ""
@@ -149,7 +157,10 @@ export default function Feed() {
                       placeholder="Оставьте комментарий..."
                     />
                     <button
-                      className={styles["photo-card__comment-button"]}
+                      className={cn(
+                        styles["photo-card__comment-button"],
+                        "btn-style"
+                      )}
                       onClick={() =>
                         addComment(photo.id, commentTextMap[photo.id] || "")
                       }
@@ -167,7 +178,7 @@ export default function Feed() {
 
       {photos.length > 0 && hasMore && (
         <button
-          className={styles["feed__load-more"]}
+          className={cn(styles["feed__load-more"], "btn-style")}
           onClick={() => setSize(size + 1)}
         >
           Загрузить ещё

@@ -4,12 +4,14 @@ import { useState, useRef, useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
 import { useAuth } from "@/context/AuthContext";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
+import "@/app/style.css";
 import styles from "./Profile.module.css";
 import { Photo } from "@/types/photo";
 import { LIMIT } from "@/constants/limitPages";
 import { fetcher } from "@/lib/fetcher";
 import { usePhotoActions } from "@/hooks/usePhotoActions";
 import { renderComments } from "@/hooks/renderComments";
+import cn from "classnames";
 
 export default function Profile() {
   useProtectedRoute();
@@ -71,17 +73,21 @@ export default function Profile() {
       <h1 className={styles.feed__title}>Профиль</h1>
       {feedback && (
         <p
-          className={
+          className={cn(
             feedback.type === "error"
               ? styles.feed__error
               : styles.feed__success
-          }
+          )}
         >
           {feedback.text}
         </p>
       )}
       <section className={styles["photo-upload"]}>
-        <label className={styles["photo-upload__label"]}>
+        {/* <label tabIndex={0} className={`${styles["photo-upload__label"]}`}> */}
+        <label
+          tabIndex={0}
+          className={cn(styles["photo-upload__label"], "btn-style")}
+        >
           {file ? "Фото готово к загрузке" : "Выбрать фото для загрузки"}
           <input
             ref={fileInputRef}
@@ -91,7 +97,8 @@ export default function Profile() {
           />
         </label>
         <button
-          className={styles["photo-upload__button"]}
+          // className={styles["photo-upload__button"]}
+          className={cn(styles["photo-upload__button"], "btn-style")}
           onClick={uploadPhoto}
           disabled={!file}
         >
@@ -115,7 +122,11 @@ export default function Profile() {
                   />
                   <figcaption className={styles["photo-card__actions"]}>
                     <button
-                      className={styles["photo-card__like-button"]}
+                      // className={styles["photo-card__like-button"]}
+                      className={cn(
+                        styles["photo-card__like-button"],
+                        "link-style"
+                      )}
                       onClick={() => toggleLike(photo.id)}
                       disabled={loadingActions[photo.id]}
                     >
@@ -123,7 +134,11 @@ export default function Profile() {
                       )
                     </button>
                     <button
-                      className={styles["photo-card__delete-button"]}
+                      // className={styles["photo-card__delete-button"]}
+                      className={cn(
+                        styles["photo-card__delete-button"],
+                        "link-style"
+                      )}
                       onClick={() => deletePhoto(photo.id)}
                       disabled={loadingActions[photo.id]}
                     >
@@ -149,7 +164,11 @@ export default function Profile() {
                   </ul>
                   <footer className={styles["photo-card__comment-form"]}>
                     <input
-                      className={styles["photo-card__comment-input"]}
+                      // className={styles["photo-card__comment-input"]}
+                      className={cn(
+                        styles["photo-card__comment-input"],
+                        "input-style"
+                      )}
                       value={
                         selectedPhoto === photo.id && replyTo === null
                           ? commentTextMap[photo.id] || ""
@@ -166,7 +185,11 @@ export default function Profile() {
                       placeholder="Добавьте комментарий..."
                     />
                     <button
-                      className={styles["photo-card__comment-button"]}
+                      // className={styles["photo-card__comment-button"]}
+                      className={cn(
+                        styles["photo-card__comment-button"],
+                        "btn-style"
+                      )}
                       onClick={() =>
                         addComment(photo.id, commentTextMap[photo.id] || "")
                       }
@@ -183,7 +206,8 @@ export default function Profile() {
       )}
       {photos.length > 0 && hasMore && (
         <button
-          className={styles["feed__load-more"]}
+          // className={styles["feed__load-more"]}
+          className={cn(styles["feed__load-more"], "btn-style")}
           onClick={() => setSize(size + 1)}
         >
           Показать ещё

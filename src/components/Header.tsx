@@ -2,6 +2,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import "@/app/style.css";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -47,7 +48,7 @@ export default function Header() {
 
               <li className="auth-block">
                 <span className="auth-text">{user.username}</span>
-                <button className="auth-btn" onClick={handleLogout}>
+                <button className="auth-btn, btn-style" onClick={handleLogout}>
                   Выйти
                 </button>
               </li>
@@ -55,12 +56,12 @@ export default function Header() {
           ) : (
             <>
               <li className="nav-item">
-                <Link className="nav-link" href="/login">
+                <Link className="nav-link, btn-style" href="/login">
                   Войти
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/register">
+                <Link className="nav-link, btn-style" href="/register">
                   Регистрация
                 </Link>
               </li>

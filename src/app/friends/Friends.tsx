@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { useAuth } from "@/context/AuthContext";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
+import "@/app/style.css";
 import styles from "./Friends.module.css";
 import { Friend } from "@/types/friend";
 import { fetcher } from "@/lib/fetcher";
 import { Feedback } from "@/types/actionFeedback";
+import cn from "classnames";
 
 export default function Friends() {
   useProtectedRoute();
@@ -130,11 +132,11 @@ export default function Friends() {
           value={friendUsername}
           onChange={(e) => setFriendUsername(e.target.value)}
           placeholder="Введите никнейм"
-          className={styles["friends__input"]}
+          className={cn(styles["friends__input"], "input-style")}
         />
         <button
           type="submit"
-          className={styles["friends__button"]}
+          className={cn(styles["friends__button"], "btn-style")}
           disabled={!friendUsername.trim()}
         >
           Отправить заявку
@@ -159,7 +161,10 @@ export default function Friends() {
                     {loadingIds[f.id] ? "Загрузка..." : "Принять"}
                   </button>
                   <button
-                    className={`${styles["friends__button"]} ${styles["friends__button--reject"]}`}
+                    className={cn(
+                      `${styles["friends__button"]} ${styles["friends__button--reject"]}`,
+                      "btn-style"
+                    )}
                     onClick={() => handleAction(f.id, "reject")}
                     disabled={!!loadingIds[f.id]}
                   >
@@ -204,7 +209,7 @@ export default function Friends() {
                     {friendUser.username}
                   </span>
                   <button
-                    className={`${styles["friends__button"]} ${styles["friends__button--delete"]}`}
+                    className={cn(`${styles["friends__button"]} ${styles["friends__button--delete"]}`, 'btn-style')}
                     onClick={() => handleAction(f.id, "delete")}
                     disabled={!!loadingIds[f.id]}
                   >

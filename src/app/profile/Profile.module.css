@@ -16,19 +16,49 @@
     margin-bottom: 25px;
 }
 
-.feed__error {
-    color: rgb(255, 74, 74);
-    text-align: center;
+.feed__message {
+    width: 80%;
+    padding: 12px 18px;
+    border-radius: 12px;
     font-weight: bold;
-    margin-bottom: 25px;
     text-align: center;
+    margin-bottom: 25px;
+    font-size: 16px;
+    animation: fadeIn 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 30%;
+    min-width: 500px;
+}
+
+.feed__error {
+    composes: feed__message;
+    background: rgba(255, 74, 74, 0.1);
+    border: 2px solid rgba(255, 74, 74, 0.6);
+    color: rgb(220, 50, 50);
+    box-shadow: 0 4px 12px rgba(255, 74, 74, 0.2);
 }
 
 .feed__success {
-    color: green;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 25px;
+    composes: feed__message;
+    background: rgba(72, 187, 120, 0.1);
+    border: 2px solid rgba(72, 187, 120, 0.6);
+    color: rgb(34, 139, 74);
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .photo-upload {
@@ -36,6 +66,8 @@
     flex-direction: column;
     gap: 25px;
     margin-bottom: 25px;
+    width: 30%;
+    min-width: 500px;
 }
 
 .photo-upload__label {
@@ -234,6 +266,11 @@
         margin-bottom: 20px;
     }
 
+    .feed__message {
+        max-width: 90%;
+        min-width: 250px;
+    }
+
     .feed__error {
         margin-bottom: 10px;
     }
@@ -244,11 +281,14 @@
 
     .photo-upload {
         gap: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+        max-width: 90%;
+        min-width: 250px;
     }
 
     .photo-upload__label {
         font-size: 16px;
+        min-width: 250px;
     }
 
     .photo-upload__button {
